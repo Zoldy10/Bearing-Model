@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="loopy">
+<material name="red">
+        <color  rgba="1.0 0.0 0.0 1.0"/>
+</material>
+<material  name="green">
+        <color  rgba="0.0 1.0 0.0 1.0"/>
+</material>
+<material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+</material>
+<material  name="purple">
+        <color  rgba="0.5 0.0 1.0 1.0"/>
+</material>
+
+
+          <link name = "axis">
+                <inertial>
+                        <origin rpy="0 0 0" xyz = "0 0 0" />
+			<mass value = "10" />
+			<inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
+                </inertial>
+                <visual>
+                        <origin rpy="0 0 0" xyz = "0 0 0" />
+			<geometry>
+			    <cylinder length="0.1" radius="0.3"/>
+                        </geometry>
+                        <material name = "purple"/>
+                 </visual>
+                 <collision>
+                   <origin rpy="0 0 0" xyz="0 0 0"/>
+                   <geometry>
+			    <cylinder length="0.1" radius="0.3"/>
+                   </geometry>
+                 </collision>
+        </link>
+          <link name = "arm">
+                <inertial>
+                        <origin rpy="0 0 0" xyz = "2.5 0 0.0" />
+                        <mass value = "1" />
+                        <inertia ixx="0.008334166666666667" iyy="0.008334166666666667" izz="0.016666666666666666" ixy="0.0" ixz="0.0" iyz="0.0"/>
+                </inertial>
+                <visual>
+                        <origin rpy="0 0 0" xyz = "2.5 0 0" />
+                        <geometry>
+                                <box size="5 0.2 0.01"/>
+                        </geometry>
+                        <material name = "green"/>
+                 </visual>
+                 <collision>
+                   <origin rpy="0 0 0" xyz="2.5 0 0.0"/>
+                   <geometry>
+                        <box size="5 0.2 0.01"/>
+                   </geometry>
+                 </collision>
+        </link>
+  <joint name="center" type="revolute">
+     <parent link="axis"/>
+     <child link="arm"/>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <axis xyz="0 0 1 "/>
+         <limit lower="-1000" upper="1000" effort="100" velocity="1000"/> 
+  </joint>
+
+</robot>
+
